@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="nl">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Limitless · Bob, Noah en Leon</title>
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600;700&family=Manrope:wght@400;500;600;700&family=Doto:wght@800;900&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+<canvas id="bg-dots" aria-hidden="true"></canvas>
+
+<!-- inloggen -->
+<div class="gate" id="gate">
+  <div class="gate-in">
+    <p class="kicker">Coaching · privé</p>
+    <h1 class="logo">LIMITLESS</h1>
+    <div class="gate-crew" id="gate-crew"></div>
+    <form id="gate-form" autocomplete="off">
+      <label for="gate-pw">Wachtwoord</label>
+      <div class="gate-row"><input id="gate-pw" type="password" placeholder="••••••••" autocomplete="current-password"><button class="btn primary" type="submit">Verder →</button></div>
+      <p class="gate-err" id="gate-err" hidden>Dat is niet het goede wachtwoord.</p>
+    </form>
+    <div class="gate-who" id="gate-who" hidden>
+      <label>Wie ben je?</label>
+      <div class="who-row"><button type="button" data-who="noah">Noah</button><button type="button" data-who="bob">Bob</button><button type="button" data-who="leon">Leon</button></div>
+    </div>
+  </div>
+</div>
+
+<!-- de site -->
+<div class="app" id="app" hidden>
+  <header class="top">
+    <div class="brand"><b>LIMITLESS</b><span>Bob · coaching met Noah en Leon</span></div>
+    <div class="top-r">
+      <span class="sync" id="sync"></span>
+      <button class="me" id="me" type="button" title="Wissel van persoon"></button>
+    </div>
+  </header>
+
+  <section class="goal" id="goal"></section>
+
+  <nav class="tabs" id="tabs" aria-label="Kies een persoon"></nav>
+
+  <main class="stage" id="stage">
+    <section class="col" data-col="noah"><div class="tree-wrap"><div class="tree" id="tree-noah"></div></div><div class="person" id="p-noah"></div></section>
+    <section class="col main" data-col="bob"><div class="tree-wrap"><div class="tree" id="tree-bob"></div></div><div class="person" id="p-bob"></div></section>
+    <section class="col" data-col="leon"><div class="tree-wrap"><div class="tree" id="tree-leon"></div></div><div class="person" id="p-leon"></div></section>
+  </main>
+
+  <p class="legend"><span class="l-todo">Te doen</span><span class="l-bezig">Bezig</span><span class="l-klaar">Klaar</span><span class="l-late">Deadline voorbij</span> · Klik op een punt om het aan te passen, op <b>+</b> om er iets boven te zetten.</p>
+</div>
+
+<!-- bewerken -->
+<div class="drawer" id="drawer" hidden>
+  <div class="drawer-bg" data-close></div>
+  <form class="drawer-in" id="edit" autocomplete="off">
+    <div class="d-head"><p class="kicker" id="d-kicker">Nieuw punt</p><button type="button" class="x" data-close aria-label="Sluiten">×</button></div>
+    <label>Titel<input name="title" required placeholder="Bijv. 4 nieuwe klanten per maand"></label>
+    <div class="d-row">
+      <label>Soort<select name="type"><option value="doel">Doel</option><option value="kpi">KPI</option><option value="taak">Taak</option></select></label>
+      <label>Wie<select name="owner"><option value="bob">Bob</option><option value="noah">Noah</option><option value="leon">Leon</option></select></label>
+    </div>
+    <div class="d-row three">
+      <label>Doelcijfer<input name="target" type="number" step="any" inputmode="decimal" placeholder="10"></label>
+      <label>Stand nu<input name="current" type="number" step="any" inputmode="decimal" placeholder="4"></label>
+      <label>Eenheid<input name="unit" placeholder="klanten, €, uur" list="units"></label>
+    </div>
+    <datalist id="units"><option value="€"><option value="klanten"><option value="afspraken"><option value="uur"><option value="posts"><option value="%"><option value="keer"></datalist>
+    <div class="d-row">
+      <label>Deadline<input name="deadline" type="date"></label>
+      <label>Status<select name="status"><option value="todo">Te doen</option><option value="bezig">Bezig</option><option value="klaar">Klaar</option></select></label>
+    </div>
+    <div class="d-notes">
+      <p class="kicker">Notities</p>
+      <div id="d-notes"></div>
+      <textarea id="d-note" rows="2" placeholder="Notitie of tip toevoegen"></textarea>
+    </div>
+    <div class="d-actions">
+      <button type="button" class="btn ghost danger" id="d-del">Verwijderen</button>
+      <button type="submit" class="btn primary">Opslaan</button>
+    </div>
+  </form>
+</div>
+
+<script src="js/config.js"></script>
+<script src="js/ibe-dots.js"></script>
+<script src="js/sprites.js"></script>
+<script src="js/store.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
